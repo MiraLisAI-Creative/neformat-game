@@ -17,9 +17,9 @@ let state={coins:0,owned:[],hero:'girl',mentor:'girl',storyDone:0,helped:0};try{
 let mode='story',topic='mul',task=null,attempts=0,hints=0,storyStage=0,storyMood='',feedback='',lastSignature='',helpTab='objects',solved=false;
 function persist(){try{localStorage.setItem('neformat-v2',JSON.stringify(state))}catch(e){}document.getElementById('topcoins').textContent='🪙 '+state.coins+' коинов'}
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function btn(label,fn,kind=''){return `<button type="button" class="btn ${kind}" onclick="${fn}">${label}</button>`}
+function btn(label,fn,kind=''){return `<button type="button" class="btn ${kind}" onclick="${esc(fn)}">${label}</button>`}
 function draw(html){root.innerHTML=html;persist();window.scrollTo(0,0)}
-function back(fn='home()'){return `<button class="back" onclick="${fn}">← Назад</button>`}
+function back(fn='home()'){return `<button class="back" onclick="${esc(fn)}">← Назад</button>`}
 function titleFor(id){return catalog.find(x=>x.id===id)?.title||id}
 function random(a){return a[Math.floor(Math.random()*a.length)]}
 function newTask(id){let a,b,ans,statement,how,object,steps,story,stack='',unit='',detail='';switch(id){
